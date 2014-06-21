@@ -5,12 +5,12 @@
 
 import logging
 import time
-from optparse import make_option
 
 from django.core.management.base import BaseCommand
+from optparse import make_option
 
-from djurk.common import get_connection
-from djurk.helpers import update_all_hits, update_reviewable_hits
+from ...common import get_connection
+from ...helpers import update_all_hits, update_reviewable_hits
 
 
 #SLEEP_TIME = 5 * 60  # 5 minutes

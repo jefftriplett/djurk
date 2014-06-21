@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from djurk.common import get_connection
-from djurk.models import HIT
+from .common import get_connection
+from .models import HIT
 
 
 def _update_hits(iterable, do_update_assignments=False):

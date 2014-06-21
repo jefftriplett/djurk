@@ -23,12 +23,13 @@ we broke with Django convention on that point.
 """
 
 import boto
+
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.db.models.signals import pre_init
 
-from djurk.common import amazon_string_to_datetime, get_connection
+from .common import amazon_string_to_datetime, get_connection
 
 
 def init_connection_callback(sender, **signal_args):

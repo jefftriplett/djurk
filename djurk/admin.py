@@ -4,8 +4,8 @@
 from django.contrib import admin
 from django.contrib import messages
 
-from djurk.models import Assignment, HIT, KeyValue
-from djurk.helpers import update_all_hits, update_reviewable_hits
+from .helpers import update_all_hits, update_reviewable_hits
+from .models import Assignment, HIT, KeyValue
 
 
 def dispose_hit(modeladmin, request, queryset):

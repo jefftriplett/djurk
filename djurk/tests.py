@@ -18,12 +18,15 @@ import tempfile
 
 import boto
 import django
+
 django_version = (django.VERSION[0] * 10.0 + django.VERSION[1] * 1.0) / 10
+
 if django_version >= 1.4:
     from django.test.utils import override_settings
+
 from django.test import TestCase
 
-from djurk.common import (PRODUCTION_HOST, PRODUCTION_WORKER_URL, SANDBOX_HOST,
+from .common import (PRODUCTION_HOST, PRODUCTION_WORKER_URL, SANDBOX_HOST,
         SANDBOX_WORKER_URL, InvalidDjurkSettings, amazon_string_to_datetime,
         get_host, get_connection, get_worker_url, is_sandbox)
 

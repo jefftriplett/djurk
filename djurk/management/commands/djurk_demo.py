@@ -3,14 +3,12 @@
 
 """Cron job to constantly poll Amazon Mechanical Turk"""
 
-
+from boto.mturk.question import (AnswerSpecification, Overview, Question,
+    QuestionContent, QuestionForm, FreeTextAnswer, FormattedContent)
+from django.core.management.base import BaseCommand
 from optparse import make_option
 
-from django.core.management.base import BaseCommand
-from boto.mturk.question import (AnswerSpecification, Overview, Question,
-        QuestionContent, QuestionForm, FreeTextAnswer, FormattedContent)
-
-from djurk.common import get_connection, get_worker_url
+from ...common import get_connection, get_worker_url
 
 
 def demo_create_favorite_color_hit():
