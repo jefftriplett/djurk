@@ -539,9 +539,6 @@ class Assignment(models.Model):
         This instance's attributes are updated.
         """
 
-        #import ipdb
-        #ipdb.set_trace()
-
         if mturk_assignment is None:
             hit = self.connection.get_hit(self.hit.mturk_id)[0]
             for a in self.connection.get_assignments(hit.HITId):
@@ -579,7 +576,6 @@ class Assignment(models.Model):
         # assignment
         for result_set in assignment.answers:
             for question in result_set:
-                #for key, value in question.fields:
                 key, value = question.qid, '\n'.join(question.fields)
                 kv, _ = KeyValue.objects.get_or_create(key=key, assignment=self)
                 if kv.value != value:

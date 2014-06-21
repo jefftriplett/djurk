@@ -59,7 +59,6 @@ class KeyValueInline(admin.TabularInline):
     model = KeyValue
     readonly_fields = ('key', 'value')
     max_num = 0
-    #min_num = 0
 
 
 class HIT_Admin(admin.ModelAdmin):
