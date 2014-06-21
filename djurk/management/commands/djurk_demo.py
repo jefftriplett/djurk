@@ -23,7 +23,7 @@ def demo_create_favorite_color_hit():
     KEYWORDS = 'data collection, favorite, color'
     DURATION = 15 * 60  # 15 minutes (Time to work on HIT)
     MAX_ASSIGNMENTS = 1  # Number of assignments per HIT
-    REWARD_PER_ASSIGNMENT = 0.00  # $0.00 USD (1 cent)
+    REWARD_PER_ASSIGNMENT = 0.01  # $0.00 USD (1 cent)
 
     #--------------- BUILD HIT container -------------------
     overview = Overview()
@@ -34,9 +34,7 @@ def demo_create_favorite_color_hit():
     #---------------  BUILD QUESTION 1 -------------------
     question_content = QuestionContent()
     question_content.append(FormattedContent(
-         "<b>What is your favorite color?</b> There isn't a financial "
-         "reward for answering, but you will get an easy approval for your "
-         "statistics."))
+         "<b>What is your favorite color?</b> Just testing an API hit. Any answer will win an award."))
 
     free_text_answer = FreeTextAnswer(num_lines=1)
 

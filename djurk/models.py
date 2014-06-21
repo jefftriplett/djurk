@@ -403,10 +403,11 @@ class HIT(models.Model):
         assignments = self.connection.get_assignments(self.mturk_id,
                                                       page_size=page_size,
                                                       page_number=page_number)
+
         for mturk_assignment in assignments:
             assert mturk_assignment.HITId == self.mturk_id
-            djurk_assignment = Assignment.objects.get_or_create(
-                    mturk_id=mturk_assignment.AssignmentId, hit=self)[0]
+            djurk_assignment, _ = Assignment.objects.get_or_create(
+                mturk_id=mturk_assignment.AssignmentId, hit=self)
             djurk_assignment.update(mturk_assignment, hit=self)
         if update_all and int(assignments.PageNumber) *\
                             page_size < int(assignments.TotalNumResults):
@@ -537,6 +538,10 @@ class Assignment(models.Model):
 
         This instance's attributes are updated.
         """
+
+        #import ipdb
+        #ipdb.set_trace()
+
         if mturk_assignment is None:
             hit = self.connection.get_hit(self.hit.mturk_id)[0]
             for a in self.connection.get_assignments(hit.HITId):
@@ -574,12 +579,12 @@ class Assignment(models.Model):
         # assignment
         for result_set in assignment.answers:
             for question in result_set:
-                for key, value in question.fields:
-                    kv = KeyValue.objects.get_or_create(key=key,
-                                                        assignment=self)[0]
-                    if kv.value != value:
-                        kv.value = value
-                        kv.save()
+                #for key, value in question.fields:
+                key, value = question.qid, '\n'.join(question.fields)
+                kv, _ = KeyValue.objects.get_or_create(key=key, assignment=self)
+                if kv.value != value:
+                    kv.value = value
+                    kv.save()
 
     def __unicode__(self):
         return self.mturk_id

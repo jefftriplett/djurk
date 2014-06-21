@@ -12,7 +12,9 @@ from django.core.management.base import BaseCommand
 from djurk.common import get_connection
 from djurk.helpers import update_all_hits, update_reviewable_hits
 
-SLEEP_TIME = 5 * 60  # 5 minutes
+
+#SLEEP_TIME = 5 * 60  # 5 minutes
+SLEEP_TIME = 60  # 1 minute
 
 
 class NullHandler(logging.Handler):
@@ -64,12 +66,12 @@ class Command(BaseCommand):
                 logging.info(("Updating Reviewable HITs with "
                               "Assignments: %s") % do_update_assignments)
                 update_reviewable_hits(
-                        do_update_assignments=do_update_assignments)
+                    do_update_assignments=do_update_assignments)
             else:
                 logging.info(("Updating All HITs with "
                               "Assignments: %s") % do_update_assignments)
                 update_all_hits(
-                        do_update_assignments=do_update_assignments)
+                    do_update_assignments=do_update_assignments)
             logging.info("Sleeping")
             if not options['loop']:
                 break

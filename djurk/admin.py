@@ -58,6 +58,8 @@ reject_assignment.short_description = "Reject assignment (Don't pay worker)"
 class KeyValueInline(admin.TabularInline):
     model = KeyValue
     readonly_fields = ('key', 'value')
+    max_num = 0
+    #min_num = 0
 
 
 class HIT_Admin(admin.ModelAdmin):
@@ -65,41 +67,40 @@ class HIT_Admin(admin.ModelAdmin):
                update_hit]
     date_hierarchy = 'creation_time'
     fieldsets = (
-
-            (None, {
-                'fields': (('mturk_id', 'hit_type_id'),
-                           ('creation_time', 'status'),
-                           ('title', 'keywords', 'description'),
-                            'reward',
-                            'requester_annotation',
-                           ),
-            }),
-            ('HIT Details', {
-                'classes': ('collapse',),
-                'fields': (
-                     'lifetime_in_seconds',
-                     'auto_approval_delay_in_seconds',
-                     'number_of_similar_hits',
-                     'review_status',
-                 )
-            }),
-            ('Assignment Overview', {
-                'classes': ('collapse',),
-                'fields': (
-                     'max_assignments',
-                     'assignment_duration_in_seconds',
-                     'number_of_assignments_pending',
-                     'number_of_assignments_available',
-                     'number_of_assignments_completed',
-                 )
-            }),
-            ('Attached Objects', {
-                'classes': ('collapse',),
-                'fields': (
-                     'content_type',
-                     'content_id',
-                 )
-            }),
+        (None, {
+            'fields': (('mturk_id', 'hit_type_id'),
+                       ('creation_time', 'status'),
+                       ('title', 'keywords', 'description'),
+                        'reward',
+                        'requester_annotation',
+                       ),
+        }),
+        ('HIT Details', {
+            'classes': ('collapse',),
+            'fields': (
+                 'lifetime_in_seconds',
+                 'auto_approval_delay_in_seconds',
+                 'number_of_similar_hits',
+                 'review_status',
+             )
+        }),
+        ('Assignment Overview', {
+            'classes': ('collapse',),
+            'fields': (
+                 'max_assignments',
+                 'assignment_duration_in_seconds',
+                 'number_of_assignments_pending',
+                 'number_of_assignments_available',
+                 'number_of_assignments_completed',
+             )
+        }),
+        ('Attached Objects', {
+            'classes': ('collapse',),
+            'fields': (
+                 'content_type',
+                 'content_id',
+             )
+        }),
     )
     list_display = (
         'creation_time',
@@ -160,22 +161,22 @@ class AssignmentAdmin(admin.ModelAdmin):
         'status',
     )
     fieldsets = (
-            (None, {
-                'fields': (('mturk_id', 'worker_id',),
-                           ('hit', 'status'),
-                           'requester_feedback',
-                           ),
-            }),
-            ('Times', {
-                'classes': ('collapse',),
-                'fields': ('submit_time',
-                           'approval_time',
-                           'auto_approval_time',
-                           'accept_time',
-                           'rejection_time',
-                           'deadline',
-                           ),
-            }),
+        (None, {
+            'fields': (('mturk_id', 'worker_id',),
+                       ('hit', 'status'),
+                       'requester_feedback',
+                       ),
+        }),
+        ('Times', {
+            'classes': ('collapse',),
+            'fields': ('submit_time',
+                       'approval_time',
+                       'auto_approval_time',
+                       'accept_time',
+                       'rejection_time',
+                       'deadline',
+                       ),
+        }),
     )
     readonly_fields = ('mturk_id', 'hit',
                        'worker_id', 'status')
