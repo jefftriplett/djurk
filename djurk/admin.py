@@ -190,6 +190,7 @@ class KeyValueAdmin(admin.ModelAdmin):
         'key',
         'short_value',
     )
+    raw_id_fields = ['assignment']
 
 admin.site.register(HIT, HIT_Admin)
 admin.site.register(Assignment, AssignmentAdmin)
